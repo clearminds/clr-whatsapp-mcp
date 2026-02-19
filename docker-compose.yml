@@ -6,18 +6,7 @@ services:
     volumes:
       - bridge-data:/data
     environment:
-      SUPABASE_URL: ${SUPABASE_URL}
-      SUPABASE_KEY: ${SUPABASE_KEY}
-    restart: unless-stopped
-
-  whatsapp-mcp:
-    build: .
-    environment:
-      WHATSAPP_BRIDGE_URL: http://whatsapp-bridge:8080
-      WHATSAPP_SUPABASE_URL: ${SUPABASE_URL}
-      WHATSAPP_SUPABASE_KEY: ${SUPABASE_KEY}
-    depends_on:
-      - whatsapp-bridge
+      SUPABASE_DB_URL: ${SUPABASE_DB_URL}
     restart: unless-stopped
 
 volumes:
