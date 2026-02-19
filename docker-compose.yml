@@ -6,7 +6,9 @@ services:
     volumes:
       - bridge-data:/data
     environment:
-      SUPABASE_DB_URL: ${SUPABASE_DB_URL}
+      SUPABASE_URL: ${SUPABASE_URL}
+      SUPABASE_KEY: ${SUPABASE_KEY}
+      SUPABASE_DB_URL: ${SUPABASE_DB_URL}  # optional, for auto-migration
     restart: unless-stopped
 
 volumes:
