@@ -14,7 +14,8 @@ def wa_list_chats(query: str | None = None, limit: int = 20) -> list[dict[str, A
         query: Optional search string to filter chat names (case-insensitive).
         limit: Maximum number of chats to return (default 20).
 
-    Returns a list of chats ordered by most recent message.
+    Returns:
+        A list of chats ordered by most recent message.
     """
     return get_supabase().list_chats(query=query, limit=limit)
 
@@ -35,7 +36,8 @@ def wa_list_messages(
         before: Only messages before this ISO timestamp.
         query: Optional content search within the chat (case-insensitive).
 
-    Returns a list of messages ordered by most recent first.
+    Returns:
+        A list of messages ordered by most recent first.
     """
     return get_supabase().list_messages(
         chat_jid=chat_jid, limit=limit, after=after, before=before, query=query
@@ -54,7 +56,8 @@ def wa_search_messages(
         chat_jid: Optional chat JID to restrict search to a single chat.
         limit: Maximum number of results (default 50).
 
-    Returns a list of matching messages ordered by most recent first.
+    Returns:
+        A list of matching messages ordered by most recent first.
     """
     return get_supabase().search_messages(query=query, chat_jid=chat_jid, limit=limit)
 
@@ -71,7 +74,8 @@ def wa_get_message_context(
         before: Number of messages before the target to include (default 5).
         after: Number of messages after the target to include (default 5).
 
-    Returns the target message and a chronological list of surrounding messages.
+    Returns:
+        Dict with the target message and a chronological list of surrounding messages.
     """
     return get_supabase().get_message_context(
         message_id=message_id, before=before, after=after
@@ -85,7 +89,8 @@ def wa_send_message(recipient: str, message: str) -> dict[str, Any]:
         recipient: Phone number or JID of the recipient (e.g. "46701234567" or "46701234567@s.whatsapp.net").
         message: Text message content.
 
-    Returns the bridge response with message ID and delivery status.
+    Returns:
+        The bridge response with message ID and delivery status.
     """
     return get_bridge().send_message(recipient=recipient, message=message)
 

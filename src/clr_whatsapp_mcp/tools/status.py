@@ -10,7 +10,8 @@ from clr_whatsapp_mcp.tools import _register_module, get_bridge, get_supabase
 def wa_status() -> dict[str, Any]:
     """Get WhatsApp system status including bridge health and message statistics.
 
-    Returns bridge connection status, chat count, message count, and latest message time.
+    Returns:
+        Dict with bridge connection status, chat count, message count, and latest message time.
     """
     bridge = get_bridge()
     supabase = get_supabase()
@@ -38,7 +39,9 @@ def wa_sync() -> dict[str, Any]:
     """Trigger a WhatsApp history sync on the bridge.
 
     Asks the Go bridge to re-sync message history from WhatsApp servers.
-    Returns the bridge response confirming the sync was triggered.
+
+    Returns:
+        The bridge response confirming the sync was triggered.
     """
     return get_bridge().trigger_sync()
 

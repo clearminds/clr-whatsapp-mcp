@@ -14,7 +14,11 @@ from clr_whatsapp_mcp.tools import ALL_MODULE_NAMES, MODULES, set_bridge, set_su
 
 
 def parse_cli_args() -> dict[str, Any]:
-    """Parse CLI arguments for configuration overrides."""
+    """Parse CLI arguments for configuration overrides.
+
+    Returns:
+        A dict of setting overrides keyed by Settings field names.
+    """
     parser = argparse.ArgumentParser(description="WhatsApp MCP Server")
 
     parser.add_argument("--bridge-url", type=str, help="WhatsApp bridge URL")

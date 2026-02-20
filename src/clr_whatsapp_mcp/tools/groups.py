@@ -13,7 +13,8 @@ def wa_list_groups(limit: int = 50) -> list[dict[str, Any]]:
     Args:
         limit: Maximum number of groups to return (default 50).
 
-    Returns a list of group chats ordered by most recent message.
+    Returns:
+        A list of group chats ordered by most recent message.
     """
     return get_supabase().list_groups(limit=limit)
 
@@ -24,7 +25,8 @@ def wa_get_group_info(chat_jid: str) -> dict[str, Any]:
     Args:
         chat_jid: The group chat JID (e.g. "120363012345678901@g.us").
 
-    Returns the group chat record or an error if not found.
+    Returns:
+        The group chat record, or an error dict if not found.
     """
     result = get_supabase().get_chat(chat_jid=chat_jid)
     if result is None:

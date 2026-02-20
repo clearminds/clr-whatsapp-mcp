@@ -13,7 +13,8 @@ def wa_search_contacts(query: str) -> list[dict[str, Any]]:
     Args:
         query: Search string to match against contact name, phone, or jid fields (case-insensitive).
 
-    Returns a list of matching contacts.
+    Returns:
+        A list of matching contact records.
     """
     return get_supabase().search_contacts(query=query)
 
