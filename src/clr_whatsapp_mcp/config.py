@@ -33,6 +33,8 @@ class Settings(BaseSettings):
     whatsapp_supabase_url: str = ""
     whatsapp_supabase_key: str = ""
 
+    whatsapp_read_only: bool = False
+
     whatsapp_transport: str = "stdio"
     whatsapp_log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"] = "INFO"
 

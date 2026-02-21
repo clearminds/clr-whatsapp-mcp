@@ -13,6 +13,10 @@ from clr_whatsapp_mcp.supabase_client import WhatsAppSupabase
 from clr_whatsapp_mcp.tools import ALL_MODULE_NAMES, MODULES, set_bridge, set_supabase
 
 
+# Tool names that perform write/mutating operations.
+WRITE_TOOLS = ["wa_send_message", "wa_send_file"]
+
+
 def parse_cli_args() -> dict[str, Any]:
     """Parse CLI arguments for configuration overrides.
 
@@ -119,6 +123,16 @@ def main() -> None:
         logger.info("Loaded module '%s' (%d tools)", mod_name, len(tools))
 
     logger.info("Total tools registered: %d", tool_count)
+
+    if settings.whatsapp_read_only and WRITE_TOOLS:
+        removed = 0
+        for name in WRITE_TOOLS:
+            try:
+                mcp.remove_tool(name)
+                removed += 1
+            except Exception:
+                pass
+        logger.info("Read-only mode: %d write tools removed", removed)
 
     # Start the server
     try:
