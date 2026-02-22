@@ -10,6 +10,7 @@ from fastmcp import FastMCP
 from clr_whatsapp_mcp.bridge import BridgeClient
 from clr_whatsapp_mcp.config import Settings, configure_logging
 from clr_whatsapp_mcp.supabase_client import WhatsAppSupabase
+from clr_whatsapp_mcp.middleware import ToolValidationMiddleware
 from clr_whatsapp_mcp.tools import ALL_MODULE_NAMES, MODULES, set_bridge, set_supabase
 
 
@@ -113,6 +114,7 @@ def main() -> None:
 
     # Create FastMCP and register all tool modules
     mcp = FastMCP("WhatsApp")
+    mcp.add_middleware(ToolValidationMiddleware())
 
     tool_count = 0
     for mod_name in ALL_MODULE_NAMES:
