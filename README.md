@@ -51,6 +51,7 @@ Optional:
 
 | Variable | Description | Default |
 |----------|-------------|---------|
+| `WHATSAPP_READ_ONLY` | Run in read-only mode | `false` |
 | `WHATSAPP_TRANSPORT` | Transport protocol (`stdio` or `sse`) | `stdio` |
 | `WHATSAPP_LOG_LEVEL` | Log level | `INFO` |
 
