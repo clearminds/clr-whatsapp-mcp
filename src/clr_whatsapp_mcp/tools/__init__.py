@@ -62,7 +62,7 @@ def get_supabase() -> WhatsAppSupabase:
 # Module registry — each value is a list of tool functions.
 MODULES: dict[str, list[Callable[..., Any]]] = {}
 
-ALL_MODULE_NAMES: tuple[str, ...] = ("messages", "contacts", "groups", "media", "status")
+ALL_MODULE_NAMES: tuple[str, ...] = ("auth", "messages", "contacts", "groups", "media", "status")
 
 
 def _register_module(name: str, tools: list[Callable[..., Any]]) -> None:
@@ -77,6 +77,7 @@ def _register_module(name: str, tools: list[Callable[..., Any]]) -> None:
 
 # Import submodules so they self-register via _register_module.
 from clr_whatsapp_mcp.tools import (  # noqa: E402, F401
+    auth,
     contacts,
     groups,
     media,

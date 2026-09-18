@@ -94,6 +94,17 @@ class BridgeClient:
             logger.warning("Bridge health check failed")
             return False
 
+    def get_qr(self) -> dict[str, Any]:
+        """Fetch the current pairing QR and link status from the bridge.
+
+        Returns:
+            Dict with ``logged_in`` (bool) and ``qr`` (the whatsmeow code
+            string, empty once linked).
+        """
+        resp = self._client.get(f"{self.base_url}/api/qr")
+        resp.raise_for_status()
+        return resp.json()
+
     def get_status(self) -> dict[str, Any]:
         """Get detailed bridge status.
 
