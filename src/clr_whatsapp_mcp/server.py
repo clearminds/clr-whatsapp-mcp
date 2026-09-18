@@ -140,7 +140,18 @@ def main() -> None:
     try:
         transport = settings.whatsapp_transport
         logger.info("Starting %s transport", transport)
-        mcp.run(transport=transport)
+        if transport == "stdio":
+            mcp.run(transport=transport)
+        else:
+            # http/sse: bind all interfaces so the container is reachable
+            # behind the gateway's auth-proxy. Host/port overridable by env.
+            import os
+
+            mcp.run(
+                transport=transport,
+                host=os.environ.get("MCP_HOST", "0.0.0.0"),
+                port=int(os.environ.get("MCP_PORT", "8000")),
+            )
     except Exception as e:
         logger.error("Failed to start MCP server: %s", e)
         sys.exit(1)
